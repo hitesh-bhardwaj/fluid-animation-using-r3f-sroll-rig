@@ -5,10 +5,9 @@ import { EffectComposer } from "@react-three/postprocessing";
 import { Suspense, useRef, useState } from "react";
 
 export default function App({ Component, pageProps }) {
-
   const eventSource = useRef();
 
-  return (  
+  return (
     <div ref={eventSource}>
       <GlobalCanvas
         debug={false}
@@ -20,18 +19,16 @@ export default function App({ Component, pageProps }) {
         style={{ pointerEvents: "none", zIndex: -1 }}
       >
         {(globalChildren) => (
-            <Suspense fallback="">
-              <EffectComposer>
-                <Fluid fluidColor="#00ffff" showBackground={true} backgroundColor="#fff"/>
-              </EffectComposer>
-              {globalChildren}
-            </Suspense>
+          <Suspense fallback="">
+            <EffectComposer>
+              <Fluid fluidColor="#0000ff" />
+            </EffectComposer>
+            {globalChildren}
+          </Suspense>
         )}
       </GlobalCanvas>
-      <SmoothScrollbar
-        config={{ syncTouch: true }}
-      />
-      <Component {...pageProps} /> 
+      <SmoothScrollbar config={{ syncTouch: true }} />
+      <Component {...pageProps} />
     </div>
-    )
+  );
 }
